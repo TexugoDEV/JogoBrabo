@@ -13722,7 +13722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidade: 5
   staminaInicial: 100
-  taxaDeDecrementoStamina: 1
+  taxaDeDecrementoStamina: 25
   staminaAtual: 0
   sliderStamina: {fileID: 805998872}
 --- !u!61 &1018294129

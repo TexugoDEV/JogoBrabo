@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Controls : MonoBehaviour
 {
@@ -30,6 +31,17 @@ public class Controls : MonoBehaviour
         
         rb.velocity = new Vector2(eixoX, eixoY);
         //Debug.Log($"Horizontal: {eixoX}, Vertical: {eixoY}");
+
+        if (eixoX !=0 || eixoY != 0)
+        {
+            staminaAtual -= taxaDeDecrementoStamina * Time.deltaTime;
+            if(staminaAtual <= 0)
+            {
+                staminaAtual = 0;
+                SceneManager.LoadScene(2);
+            }
+            AtualizarSlideStamina();
+        }
     }
 
     void AtualizarSlideStamina()
