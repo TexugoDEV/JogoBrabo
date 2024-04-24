@@ -12,6 +12,7 @@ public class Controls : MonoBehaviour
     public float velocidade = 5f;
     public float staminaInicial = 100f;
     public float taxaDeDecrementoStamina = 1f;
+    public float taxaRecuperacaoStamina = 1f;
     public float staminaAtual;
     public Slider sliderStamina;
 
@@ -47,5 +48,25 @@ public class Controls : MonoBehaviour
     void AtualizarSlideStamina()
     {
         sliderStamina.value = staminaAtual / staminaInicial;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Recover"))
+        {
+            Debug.Log("colidi legal dog");
+            StartCoroutine(recuperarStamina());
+        }
+        
+    }
+
+    IEnumerator recuperarStamina()
+    {
+        while (staminaAtual < staminaInicial)
+        {
+            staminaAtual += taxaRecuperacaoStamina * Time.deltaTime;
+            AtualizarSlideStamina();
+            yield return null;
+        }
     }
 }
