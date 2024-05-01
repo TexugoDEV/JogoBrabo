@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class ChanceMap : MonoBehaviour
 {
     public string fase1;
+    public string fase3;
 
     // Start is called before the first frame update
     void Start()
@@ -23,11 +24,13 @@ public class ChanceMap : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         SceneManager.LoadScene(fase1);
+        SceneManager.LoadScene(fase3);
     }
 
     private void CarregarNovaFase()
     {
         SceneManager.LoadScene(fase1);
+        SceneManager.LoadScene(fase3);
 
     }
 
