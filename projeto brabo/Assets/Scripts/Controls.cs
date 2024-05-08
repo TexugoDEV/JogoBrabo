@@ -9,19 +9,22 @@ public class Controls : MonoBehaviour
     // Start is called before the first frame update
 
     private Rigidbody2D rb;
+    public Animator movement;
     public float velocidade = 5f;
     public float staminaInicial = 100f;
     public float taxaDeDecrementoStamina = 1f;
     public float taxaRecuperacaoStamina = 1f;
     public float staminaAtual;
     public Slider sliderStamina;
+    bool IsWalking = false;
+    
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         staminaAtual = staminaInicial;
         AtualizarSlideStamina();
-
+        IsWalking = false;
     }
 
     // Update is called once per frame
@@ -29,7 +32,9 @@ public class Controls : MonoBehaviour
     {
         float eixoX = Input.GetAxisRaw("Horizontal") * velocidade;
         float eixoY = Input.GetAxisRaw("Vertical") * velocidade;
-        
+        IsWalking = eixoX != 0 || eixoY != 0;
+
+
         rb.velocity = new Vector2(eixoX, eixoY);
         //Debug.Log($"Horizontal: {eixoX}, Vertical: {eixoY}");
 
@@ -41,9 +46,20 @@ public class Controls : MonoBehaviour
                 staminaAtual = 0;
                 SceneManager.LoadScene(2);
             }
+            movement.SetFloat("eixoX", eixoX);
+            movement.SetFloat("eixoY", eixoY);
+
             AtualizarSlideStamina();
         }
+        movement.SetBool("IsWalking", IsWalking);
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            movement.SetTrigger("Attack");
+            Debug.Log("deu certo dog");
+        }
+       
     }
+    
 
     void AtualizarSlideStamina()
     {
