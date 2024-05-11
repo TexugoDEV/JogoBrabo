@@ -8,6 +8,7 @@ public class ChanceMap : MonoBehaviour
 {
     public string fase1;
     public string fase3;
+    public string fase4;
 
     // Start is called before the first frame update
     void Start()
@@ -25,13 +26,14 @@ public class ChanceMap : MonoBehaviour
     {
         SceneManager.LoadScene(fase1);
         SceneManager.LoadScene(fase3);
+        SceneManager.LoadScene(fase4);
     }
 
     private void CarregarNovaFase()
     {
         SceneManager.LoadScene(fase1);
         SceneManager.LoadScene(fase3);
-
+        SceneManager.LoadScene(fase4);
     }
 
 }
