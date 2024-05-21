@@ -17,6 +17,9 @@ public class Controls : MonoBehaviour
     public float staminaAtual;
     public Slider sliderStamina;
     bool IsWalking = false;
+
+    public int playerHealth = 100;
+    public Slider lifeSlider;
     
 
     void Start()
@@ -25,6 +28,7 @@ public class Controls : MonoBehaviour
         staminaAtual = staminaInicial;
         AtualizarSlideStamina();
         IsWalking = false;
+        Debug.Log("Life do Player" + playerHealth);
     }
 
     // Update is called once per frame
@@ -57,6 +61,7 @@ public class Controls : MonoBehaviour
             movement.SetTrigger("Attack");
             Debug.Log("deu certo dog");
         }
+        lifeSlider.value = playerHealth * 0.01f;
        
     }
     

@@ -28,6 +28,17 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         MoveTowardsTarget();
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("ZoneAttack"))
+        {
+            Debug.Log("Inimigo entrou na zona de ataque.");
+            animator.SetTrigger("Attack");
+
+        }
     }
 
     private void MoveTowardsTarget()
