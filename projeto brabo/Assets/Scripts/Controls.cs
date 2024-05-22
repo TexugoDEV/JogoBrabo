@@ -90,4 +90,19 @@ public class Controls : MonoBehaviour
             yield return null;
         }
     }
+
+    public void TakeDamage(int damage)
+    {
+        playerHealth -= damage;
+        Debug.Log("Player tomou" + damage + "de dano, saude restante:" + playerHealth);
+   
+        if (playerHealth <=0) {
+
+            Debug.Log("morre");
+            SceneManager.LoadScene(2);
+        
+        }
+
+    
+    }
 }

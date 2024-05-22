@@ -40238,7 +40238,7 @@ MonoBehaviour:
   staminaAtual: 0
   sliderStamina: {fileID: 805998872}
   playerHealth: 100
-  lifeSlider: {fileID: 0}
+  lifeSlider: {fileID: 348510304}
 --- !u!61 &1018294129
 BoxCollider2D:
   m_ObjectHideFlags: 0

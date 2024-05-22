@@ -15,6 +15,8 @@ public class EnemyController : MonoBehaviour
     private Transform currentTarget;
     private Vector3 scale;
 
+
+    private Coroutine attackCoroutine;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -39,7 +41,53 @@ public class EnemyController : MonoBehaviour
             animator.SetTrigger("Attack");
 
         }
+
+        Controls player = other.GetComponent<Controls>();
+
+        if(player == null) {
+
+            player = other.GetComponentInParent<Controls>();
+
+        }
+
+        if(player != null)
+        {
+            if(attackCoroutine == null) {
+            
+            
+            attackCoroutine = StartCoroutine(AttackPlayer(player));
+            }
+
+            else
+            {
+                Debug.LogWarning("o player não ta apanhando");
+            }
+        }
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("ZoneAttack"))
+        {
+            Debug.Log("inimigo saiu da zona");
+
+            if(attackCoroutine != null)
+            {
+                StopCoroutine(attackCoroutine);
+                attackCoroutine = null;
+            }
+
+        }
+    }
+
+    private IEnumerator AttackPlayer(Controls player)
+    {
+        player.TakeDamage(10);
+        animator.SetTrigger("Attack");
+        Debug.Log("inimigo atacou");
+        yield return new WaitForSeconds(1);
+    }
+
 
     private void MoveTowardsTarget()
     {
