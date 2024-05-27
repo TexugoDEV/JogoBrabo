@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Recover
   - ZoneAttack
+  - AttackZone
   layers:
   - Default
   - TransparentFX

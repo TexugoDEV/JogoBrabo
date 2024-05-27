@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed = 3f;
     private Animator animator;
     private bool isWalking = false;
+    private int enemyHealth = 50;
 
     private Rigidbody2D rb;
     private Transform currentTarget;
@@ -62,6 +63,12 @@ public class EnemyController : MonoBehaviour
             {
                 Debug.LogWarning("o player não ta apanhando");
             }
+            if (other.CompareTag("AttackZone"))
+            {
+                Debug.Log("Inimigo ta tomando um cacete");
+                EnemyTakeDamage(10);
+
+            }
         }
     }
 
@@ -87,6 +94,18 @@ public class EnemyController : MonoBehaviour
         Debug.Log("inimigo atacou");
         yield return new WaitForSeconds(1);
     }
+
+    public void EnemyTakeDamage(int damage)
+    {
+        enemyHealth -= damage;
+        Debug.Log("inimigo tomou" + damage + "de dano. resto da vida: " + enemyHealth);
+
+        if (enemyHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
 
     private void MoveTowardsTarget()
