@@ -62,6 +62,11 @@ public class Controls : MonoBehaviour
             Debug.Log("deu certo dog");
         }
         lifeSlider.value = playerHealth * 0.01f;
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SceneManager.LoadScene(0);
+        }
        
     }
     
